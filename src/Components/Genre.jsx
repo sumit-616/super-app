@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import Movie from "./Movie";
-import actionImg from "../../public/card_img/action.png";
-import dramaImg from "../../public/card_img/drama.png";
-import romanceImg from "../../public/card_img/romance.png";
-import thrillerImg from "../../public/card_img/thriller.png";
-import westernImg from "../../public/card_img/western.png";
-import horrorImg from "../../public/card_img/horror.png";
-import fantasyImg from "../../public/card_img/fantasy.png";
-import musicImg from "../../public/card_img/music.png";
-import fictionImg from "../../public/card_img/fiction.png";
+import GenrePreview from "./GenrePreview";
 import vectorImg from "../images/Vector.png";
 import { useNavigate } from "react-router-dom";
 
@@ -17,9 +8,66 @@ const green = {
 };
 
 const Genre = () => {
+
+  const genreCard = [
+    {
+      id: 1,
+      title: "Action",
+      image: "/card_img/action.png",
+      bgColor: "#FF5209",
+    },
+    {
+      id: 2,
+      title: "Drama",
+      image: "/card_img/drama.png",
+      bgColor: "#D7A4FF",
+    },
+    {
+      id: 3,
+      title: "Romance",
+      image: "/card_img/romance.png",
+      bgColor: "#11B800",
+    },
+    {
+      id: 4,
+      title: "Thriller",
+      image: "/card_img/thriller.png",
+      bgColor: "#84C2FF",
+    },
+    {
+      id: 5,
+      title: "Western",
+      image: "/card_img/western.png",
+      bgColor: "#902500",
+    },
+    {
+      id: 6,
+      title: "Horror",
+      image: "/card_img/horror.png",
+      bgColor: "#7358FF",
+    },
+    {
+      id: 7,
+      title: "Fantasy",
+      image: "/card_img/fantasy.png",
+      bgColor: "#FF4ADE",
+    },
+    {
+      id: 8,
+      title: "Music",
+      image: "/card_img/music.png",
+      bgColor: "#E61E32",
+    },
+    {
+      id: 9,
+      title: "Fiction",
+      image: "/card_img/fiction.png",
+      bgColor: "#6CD061",
+    },
+  ];
+
   const [arrayOfMovieGenre, setArrayOfMovieGenre] = useState([]);
   const [nextPageCondition, setNextPageCondition] = useState(true);
-  const [isClicked, setIsClicked] = useState(false);
   
   const navigate = useNavigate();
 
@@ -50,7 +98,7 @@ const Genre = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row w-screen min-h-screen bg-black text-white overflow-hidden p-4 md:p-8">
+    <div className="flex flex-col md:flex-row w-screen min-h-screen bg-black text-white overflow-y-scroll p-4 md:p-6">
       {/* Left Section */}
       <div className="flex flex-col md:w-[45%] w-full md:pl-8">
         <div className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-12">
@@ -93,91 +141,21 @@ const Genre = () => {
       </div>
 
       {/* Right Section */}
-      <div className="flex flex-col md:w-[55%] w-full mt-8 md:mt-0">
+      <div className="flex flex-col md:w-[55%] w-full mt-8 md:mt-8">
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 h-auto">
-          <button className="cursor-pointer">
-            <Movie
+          {genreCard.map((genre)=>(
+            <button key={genre.id} className="cursor-pointer">
+            <GenrePreview
               handleClickForGenre={handleClickForGenre}
-              bgColor="#FF5209"
-              movieGenre="Action"
-              imgPath={actionImg}
+              bgColor={genre.bgColor}
+              movieGenre={genre.title}
+              imgPath={genre.image}
               selectedGenres={arrayOfMovieGenre}
             />
           </button>
-          <button className="cursor-pointer">
-            <Movie
-              handleClickForGenre={handleClickForGenre}
-              bgColor="#D7A4FF"
-              movieGenre="Drama"
-              imgPath={dramaImg}
-              selectedGenres={arrayOfMovieGenre}
-            />
-          </button>
-          <button className="cursor-pointer">
-            <Movie
-              handleClickForGenre={handleClickForGenre}
-              bgColor="#11B800"
-              movieGenre="Romance"
-              imgPath={romanceImg}
-              selectedGenres={arrayOfMovieGenre}
-            />
-          </button>
-          <button className="cursor-pointer">
-            <Movie
-              handleClickForGenre={handleClickForGenre}
-              bgColor="#84C2FF"
-              movieGenre="Thriller"
-              imgPath={thrillerImg}
-              selectedGenres={arrayOfMovieGenre}
-            />
-          </button>
-          <button className="cursor-pointer">
-            <Movie
-              handleClickForGenre={handleClickForGenre}
-              bgColor="#902500"
-              movieGenre="Western"
-              imgPath={westernImg}
-              selectedGenres={arrayOfMovieGenre}
-            />
-          </button>
-          <button className="cursor-pointer">
-            <Movie
-              handleClickForGenre={handleClickForGenre}
-              bgColor="#7358FF"
-              movieGenre="Horror"
-              imgPath={horrorImg}
-              selectedGenres={arrayOfMovieGenre}
-            />
-          </button>
-          <button className="cursor-pointer">
-            <Movie
-              handleClickForGenre={handleClickForGenre}
-              bgColor="#FF4ADE"
-              movieGenre="Fantasy"
-              imgPath={fantasyImg}
-              selectedGenres={arrayOfMovieGenre}
-            />
-          </button>
-          <button className="cursor-pointer">
-            <Movie
-              handleClickForGenre={handleClickForGenre}
-              bgColor="#E61E32"
-              movieGenre="Music"
-              imgPath={musicImg}
-              selectedGenres={arrayOfMovieGenre}
-            />
-          </button>
-          <button className="cursor-pointer">
-            <Movie
-              handleClickForGenre={handleClickForGenre}
-              bgColor="#6CD061"
-              movieGenre="Fiction"
-              imgPath={fictionImg}
-              selectedGenres={arrayOfMovieGenre}
-            />
-          </button>
+          ))}
         </div>
-        <div className="flex justify-end mt-8 md:mt-12">
+        <div className="flex justify-end mt-8 md:mt-12 md:pr-4">
           <button
             onClick={() => handleClickForNextPage("click")}
             className="bg-[#148A08] w-32 md:w-40 h-10 rounded-lg cursor-pointer transition-all duration-100 hover:bg-[#0E6C06] hover:scale-105"
