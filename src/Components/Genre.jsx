@@ -73,7 +73,7 @@ const Genre = () => {
 
   function handleClickForNextPage(source) {
     if (source === "click" && arrayOfMovieGenre.length > 2) {
-      navigate("/widget");
+      navigate("/movies", {state: {selectedGenres:arrayOfMovieGenre}});
     } else if (arrayOfMovieGenre.length > 1) {
       if (source === "click") {
         setNextPageCondition(false);
