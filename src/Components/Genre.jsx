@@ -3,7 +3,6 @@ import GenrePreview from "./GenrePreview";
 import vectorImg from "../images/Vector.png";
 import { useNavigate } from "react-router-dom";
 
-
 const green = {
   color: "#72DB73",
 };
@@ -14,67 +13,67 @@ const Genre = () => {
     {
       id: 1,
       title: "Action",
-      image: `/super-app/card_img/action.png`,
+      image: "/card_img/action.png",
       bgColor: "#FF5209",
     },
     {
       id: 2,
       title: "Drama",
-      image: "/super-app/card_img/drama.png",
+      image: "/card_img/drama.png",
       bgColor: "#D7A4FF",
     },
     {
       id: 3,
       title: "Romance",
-      image: "/super-app/card_img/romance.png",
+      image: "/card_img/romance.png",
       bgColor: "#11B800",
     },
     {
       id: 4,
       title: "Thriller",
-      image: "/super-app/card_img/thriller.png",
+      image: "/card_img/thriller.png",
       bgColor: "#84C2FF",
     },
     {
       id: 5,
       title: "Western",
-      image: "/super-app/card_img/western.png",
+      image: "/card_img/western.png",
       bgColor: "#902500",
     },
     {
       id: 6,
       title: "Horror",
-      image: "/super-app/card_img/horror.png",
+      image: "/card_img/horror.png",
       bgColor: "#7358FF",
     },
     {
       id: 7,
       title: "Fantasy",
-      image: "/super-app/card_img/fantasy.png",
+      image: "/card_img/fantasy.png",
       bgColor: "#FF4ADE",
     },
     {
       id: 8,
       title: "Music",
-      image: "/super-app/card_img/music.png",
+      image: "/card_img/music.png",
       bgColor: "#E61E32",
     },
     {
       id: 9,
       title: "Fiction",
-      image: "/super-app/card_img/fiction.png",
+      image: "/card_img/fiction.png",
       bgColor: "#6CD061",
     },
   ];
 
   const [arrayOfMovieGenre, setArrayOfMovieGenre] = useState([]);
   const [nextPageCondition, setNextPageCondition] = useState(true);
-
+  
   const navigate = useNavigate();
 
   function handleClickForNextPage(source) {
     if (source === "click" && arrayOfMovieGenre.length > 2) {
-      navigate("/movies", { state: { selectedGenres: arrayOfMovieGenre } });
+      navigate("/movies", {state: {selectedGenres:arrayOfMovieGenre}});
     } else if (arrayOfMovieGenre.length > 1) {
       if (source === "click") {
         setNextPageCondition(false);
@@ -144,16 +143,16 @@ const Genre = () => {
       {/* Right Section */}
       <div className="flex flex-col md:w-[55%] w-full mt-8 md:mt-8">
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 h-auto">
-          {genreCard.map((genre) => (
+          {genreCard.map((genre)=>(
             <button key={genre.id} className="cursor-pointer">
-              <GenrePreview
-                handleClickForGenre={handleClickForGenre}
-                bgColor={genre.bgColor}
-                movieGenre={genre.title}
-                imgPath={genre.image}
-                selectedGenres={arrayOfMovieGenre}
-              />
-            </button>
+            <GenrePreview
+              handleClickForGenre={handleClickForGenre}
+              bgColor={genre.bgColor}
+              movieGenre={genre.title}
+              imgPath={genre.image}
+              selectedGenres={arrayOfMovieGenre}
+            />
+          </button>
           ))}
         </div>
         <div className="flex justify-end mt-8 md:mt-12 md:pr-4">
