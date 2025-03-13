@@ -20,3 +20,11 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.custom-html a{
+  color: rgb(66, 69, 249);
+}
+
+.custom-html a:hover{
+  color:rgb(0, 21, 255)
+}
