@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import GenrePreview from "./GenrePreview";
 import vectorImg from "../images/Vector.png";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const green = {
   color: "#72DB73",
@@ -66,6 +67,9 @@ const Genre = () => {
     },
   ];
 
+  const location = useLocation();
+  const userData = location.state?.userData;
+
   const [arrayOfMovieGenre, setArrayOfMovieGenre] = useState([]);
   const [nextPageCondition, setNextPageCondition] = useState(true);
   
@@ -73,7 +77,11 @@ const Genre = () => {
 
   function handleClickForNextPage(source) {
     if (source === "click" && arrayOfMovieGenre.length > 2) {
-      navigate("/movies", {state: {selectedGenres:arrayOfMovieGenre}});
+      navigate("/widget", {state: {
+          selectedGenres:arrayOfMovieGenre,
+          userData,
+        }
+      });
     } else if (arrayOfMovieGenre.length > 1) {
       if (source === "click") {
         setNextPageCondition(false);
