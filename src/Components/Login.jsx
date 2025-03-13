@@ -58,7 +58,7 @@ const Login = () => {
     console.log (formData);
     localStorage.setItem ('user', JSON.stringify (formData));
     toast.success ('User created successfully');
-    navigate ('/genre');
+    navigate ('/genre', {state: {userData:formData}});
   }
   
   function handleChange (event) {
