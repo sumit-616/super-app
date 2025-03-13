@@ -52,7 +52,7 @@ const Widget = () => {
   return (
     <div className="h-screen w-[100vw] bg-black overflow-y-auto" style={{ width: contentWidth }}>
       <div className='mx-6 mt-8 mb-2'>
-        <div className="h-[140vh] grid md:grid-cols-3 md:grid-rows-5 sm:grid-cols-1 gap-x-6 gap-y-4">
+        <div className="h-[120vh] grid md:grid-cols-3 md:grid-rows-5 sm:grid-cols-1 gap-x-6 gap-y-4">
           {/* userDp first one */}
           <div className="flex items-center bg-[#5746EA] row-span-2 py-6 rounded-2xl px-6 ">
             <img className='h-full w-28' src="/card_img/boydp.png" alt="" />
