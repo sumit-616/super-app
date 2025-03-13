@@ -5,6 +5,7 @@ import Widget from "./Components/Widget";
 import Movies from "./Components/Movies";
 import { Toaster } from "react-hot-toast";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Stopwatch from "./Components/Stopwatch";
 
 function App() {
   const router = createBrowserRouter([
@@ -28,6 +29,7 @@ function App() {
 
   return <>
     <RouterProvider router={router} />
+    {/* <Stopwatch/> */}
   </>;
 }
 
