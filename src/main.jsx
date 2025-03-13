@@ -5,8 +5,10 @@ import App from './App.jsx'
 import { Toaster } from "react-hot-toast";
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
+  <div>
     <Toaster />
     <App />
-  </StrictMode>,
+  </div>
+  // </StrictMode>,
 )

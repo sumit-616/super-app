@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
 
-const url = "https://imdb237.p.rapidapi.com/news?category=MOVIE";
+const url = 'https://imdb237.p.rapidapi.com/news?category=MOVIE';
 const options = {
-  method: "GET",
-  headers: {
-    "x-rapidapi-key": "3a9abbf379msh7843d8d127fabdap1a71dajsn4b18f609fbe3",
-    "x-rapidapi-host": "imdb237.p.rapidapi.com",
-  },
+	method: 'GET',
+	headers: {
+		'x-rapidapi-key': '269ca0913cmsh4ca745b9f6ed432p19f50ejsn291503351da2',
+		'x-rapidapi-host': 'imdb237.p.rapidapi.com'
+	}
 };
 
 const News = () => {
@@ -18,15 +18,15 @@ const News = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const cachedNews = sessionStorage.getItem("newsData");
-        const cachedRandomNews = sessionStorage.getItem("randomNews");
+        // const cachedNews = sessionStorage.getItem("newsData");
+        // const cachedRandomNews = sessionStorage.getItem("randomNews");
 
         // if (cachedNews && cachedRandomNews) {
         //   setNews(JSON.parse(cachedNews));
         //   setRandomNews(JSON.parse(cachedRandomNews));
         //   console.log("hi");
         // } else {
-          console.log("bye")
+          // console.log("bye")
           const response = await fetch(url, options);
           const data = await response.json();
           const fetchedNews = data?.data?.news || [];
@@ -37,6 +37,11 @@ const News = () => {
             const randomItem = fetchedNews[Math.floor(Math.random() * fetchedNews.length)];
             setRandomNews(randomItem);
             // sessionStorage.setItem("randomNews", JSON.stringify(randomItem));
+            const dateStr = randomItem?.node?.date;
+        if (dateStr) {
+          const formattedDate = dateStr.split('T').join(' | ').split('Z').join(' ');
+          setNewsDate(formattedDate);
+        }
           }
 
           setNews(fetchedNews);
@@ -47,15 +52,6 @@ const News = () => {
     };
     fetchData();
   }, []);
-
-  useEffect(()=>{
-    const dateStr = randomNews?.node?.date;
-    if(dateStr?.length>0){
-      console.log("falkdj;lf")
-      const date = dateStr.split('T').join(' | ').split('Z').join(' ');
-      setNewsDate(date);
-    }
-  },[randomNews]);
 
   return (
     <div className="h-full">
