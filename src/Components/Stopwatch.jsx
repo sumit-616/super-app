@@ -169,7 +169,7 @@ const Stopwatch = () => {
               min="0"
               value={hours}
               onChange={handleInputChange(setHours, Infinity)}
-              className="w-8 p-1.5 text-3xl text-white text-center rounded border-none outline-none bg-transparent"
+              className="w-16 p-1.5 text-3xl text-white text-center rounded border-none outline-none bg-transparent"
               placeholder="0"
             />
             <button onClick={decrementHours} className="text-xl text-[#949494]">▼</button>
@@ -184,7 +184,7 @@ const Stopwatch = () => {
               max="59"
               value={minutes}
               onChange={handleInputChange(setMinutes, 59)}
-              className="w-8 p-1.5 text-3xl text-center rounded border-none outline-none bg-transparent"
+              className="w-12 p-1.5 text-3xl text-center rounded border-none outline-none bg-transparent"
               placeholder="0"
             />
             <button onClick={decrementMinutes} className="text-xl text-[#949494]">▼</button>
@@ -199,7 +199,7 @@ const Stopwatch = () => {
               max="59"
               value={seconds}
               onChange={handleInputChange(setSeconds, 59)}
-              className="w-8 p-1.5 text-3xl text-center rounded border-none outline-none bg-transparent"
+              className="w-12 p-1.5 text-3xl text-center rounded border-none outline-none bg-transparent"
               placeholder="0"
             />
             <button onClick={decrementSeconds} className="text-xl text-[#949494]">▼</button>

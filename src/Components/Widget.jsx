@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Stopwatch from './Stopwatch';
 import { useNavigate } from 'react-router-dom';
 import News from './News';
+import Weather from './Weather.jsx';
 
 const Widget = () => {
   const navigate = useNavigate();
@@ -51,16 +52,16 @@ const Widget = () => {
 
   return (
     <div className="h-screen w-[100vw] bg-black overflow-hidden" style={{ width: contentWidth }}>
-      <div className='mx-6 mt-2 mb-2'>
+      <div className='mx-6 mt-1.5 mb-2'>
         <div className="h-[98vh] grid md:grid-cols-3 md:grid-rows-5 sm:grid-cols-1 gap-x-12 gap-y-4 overflow-hidden">
           {/* userDp first one */}
-          <div className="flex items-center bg-[#5746EA] row-span-2 py-6 rounded-2xl px-6 overflow-hidden">
+          <div className="flex items-center bg-[#5746EA] row-span-2 py-2 rounded-2xl px-6 overflow-hidden">
             <img className='h-full w-28' src="/card_img/boydp.png" alt="" />
-            <div className='flex flex-col px-6 gap-4'>
+            <div className='flex flex-col px-6 gap-2'>
               <div className='text-white'>
-                <h3 className='text-xl'>{userData?.name}</h3>
-                <h3 className='text-xl'>{userData?.email}</h3>
-                <h1 className='text-3xl font-bold'>{userData?.userName}</h1>
+                <h3 className='text-xl leading-tight'>{userData?.name}</h3>
+                <h3 className='text-xl leading-tight'>{userData?.email}</h3>
+                <h1 className='text-3xl leading-tight font-bold'>{userData?.userName}</h1>
               </div>
               <div className='grid md:grid-cols-2 gap-x-6 gap-y-2'>
                 {selectedGenres?.map((genre, index) => (
@@ -82,9 +83,12 @@ const Widget = () => {
           </div>
           {/* weather and time */}
           <div className='rounded-2xl overflow-hidden text-white'>
-            <div className='flex items-center justify-around text-2xl font-semibold px-6 h-[27%] bg-[#FF4ADE]'>
+            <div className='flex items-center justify-around text-xl font-semibold px-6 h-[27%] bg-[#FF4ADE] overflow-hidden'>
               <h1>{currentDate}</h1>
               <h1>{currentTime}</h1>
+            </div>
+            <div className="bg-[#101744]">
+              <Weather/>
             </div>
             <div className='h-[70%] bg-[#101744]'></div>
           </div>
