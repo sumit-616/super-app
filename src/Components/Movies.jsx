@@ -51,7 +51,7 @@ const Movies = () => {
           return false;
         });
 
-        moviesData[genre] = filteredMovies.slice(0, 8);
+        moviesData[genre] = filteredMovies.slice(0, 15);
       } catch (error) {
         console.error(`Error fetching ${genre} movies:`, error);
       }
