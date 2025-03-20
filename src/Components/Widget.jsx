@@ -50,11 +50,11 @@ const Widget = () => {
   }
 
   return (
-    <div className="h-screen w-[100vw] bg-black overflow-y-auto" style={{ width: contentWidth }}>
+    <div className="h-screen w-[100vw] bg-black overflow-hidden" style={{ width: contentWidth }}>
       <div className='mx-6 mt-2 mb-2'>
-        <div className="h-[100vh] grid md:grid-cols-3 md:grid-rows-5 sm:grid-cols-1 gap-x-12 gap-y-4">
+        <div className="h-[98vh] grid md:grid-cols-3 md:grid-rows-5 sm:grid-cols-1 gap-x-12 gap-y-4 overflow-hidden">
           {/* userDp first one */}
-          <div className="flex items-center bg-[#5746EA] row-span-2 py-6 rounded-2xl px-6 ">
+          <div className="flex items-center bg-[#5746EA] row-span-2 py-6 rounded-2xl px-6 overflow-hidden">
             <img className='h-full w-28' src="/card_img/boydp.png" alt="" />
             <div className='flex flex-col px-6 gap-4'>
               <div className='text-white'>
@@ -77,8 +77,8 @@ const Widget = () => {
             <textarea className='w-full h-full p-2 border-2 rounded-lg' name="notes" id="notes" placeholder='This is how I am going to learn MERN Stack in next 3 months.'></textarea>
           </div>
           {/* news section */}
-          <div className="bg-white row-span-5 rounded-2xl overflow-hidden">
-            <News />
+          <div className="bg-white row-span-5 overflow-hidden">
+            <News handleClick={handleClick}/>
           </div>
           {/* weather and time */}
           <div className='rounded-2xl overflow-hidden text-white'>
@@ -94,11 +94,11 @@ const Widget = () => {
           </div>
         </div>
         {/* browse button for navigation */}
-        <div className="h-[10vh] flex items-center justify-end">
+        {/* <div className="h-[10vh] flex items-center justify-end">
           <button onClick={handleClick} className="bg-[#148A08] w-32 h-8 rounded-2xl text-white font-semibold tracking-wide cursor-pointer">
             Browse
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

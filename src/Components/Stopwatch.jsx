@@ -126,7 +126,7 @@ const Stopwatch = () => {
   };
 
   return (
-    <div className="flex items-center justify-center p-8 h-full bg-[#1E2343] text-white rounded-2xl gap-32">
+    <div className="flex items-center justify-center p-8 h-full bg-[#1E2343] text-white rounded-2xl gap-32 overflow-hidden">
       <div className="text-center flex gap-12 relative mb-24">
         <div className="mb-4 relative">
           <svg width="200" height="200" viewBox="0 0 120 120" className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -160,49 +160,49 @@ const Stopwatch = () => {
         </div>
       </div>
       <div className='flex flex-col items-center'>
-        <div className="flex justify-center gap-4">
+        <div className="flex justify-center gap-3">
           <div className="flex flex-col items-center">
             <span className="text-[#949494] pb-3">Hours</span>
-            <button onClick={incrementHours} className="text-2xl text-[#949494]">▲</button>
+            <button onClick={incrementHours} className="text-xl text-[#949494]">▲</button>
             <input
               type="number"
               min="0"
               value={hours}
               onChange={handleInputChange(setHours, Infinity)}
-              className="w-24 p-2 text-4xl text-white text-center rounded border-none outline-none bg-transparent"
+              className="w-8 p-1.5 text-3xl text-white text-center rounded border-none outline-none bg-transparent"
               placeholder="0"
             />
-            <button onClick={decrementHours} className="text-2xl text-[#949494]">▼</button>
+            <button onClick={decrementHours} className="text-xl text-[#949494]">▼</button>
           </div>
-          <div className='pt-18 text-4xl'>:</div>
+          <div className='pt-17 text-3xl'>:</div>
           <div className="flex flex-col items-center">
           <span className="text-[#949494] pb-3">Minutes</span>
-            <button onClick={incrementMinutes} className="text-2xl text-[#949494]">▲</button>
+            <button onClick={incrementMinutes} className="text-xl text-[#949494]">▲</button>
             <input
               type="number"
               min="0"
               max="59"
               value={minutes}
               onChange={handleInputChange(setMinutes, 59)}
-              className="w-16 p-2 text-4xl text-center rounded border-none outline-none bg-transparent"
+              className="w-8 p-1.5 text-3xl text-center rounded border-none outline-none bg-transparent"
               placeholder="0"
             />
-            <button onClick={decrementMinutes} className="text-2xl text-[#949494]">▼</button>
+            <button onClick={decrementMinutes} className="text-xl text-[#949494]">▼</button>
           </div>
-          <div className='pt-18 text-4xl'>:</div>
+          <div className='pt-17 text-3xl'>:</div>
           <div className="flex flex-col items-center">
             <span className="text-[#949494] pb-3">Seconds</span>
-            <button onClick={incrementSeconds} className="text-2xl text-[#949494]">▲</button>
+            <button onClick={incrementSeconds} className="text-xl text-[#949494]">▲</button>
             <input
               type="number"
               min="0"
               max="59"
               value={seconds}
               onChange={handleInputChange(setSeconds, 59)}
-              className="w-16 p-2 text-4xl text-center rounded border-none outline-none bg-transparent"
+              className="w-8 p-1.5 text-3xl text-center rounded border-none outline-none bg-transparent"
               placeholder="0"
             />
-            <button onClick={decrementSeconds} className="text-2xl text-[#949494]">▼</button>
+            <button onClick={decrementSeconds} className="text-xl text-[#949494]">▼</button>
           </div>
         </div>
         <div className='w-[24vw] ml-[1.2rem]'>
