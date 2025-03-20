@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Stopwatch from './Stopwatch';
-import Weather from './Weather';
+import Weather from './Weather.jsx';
 import { useNavigate } from 'react-router-dom';
 import News from './News';
 
