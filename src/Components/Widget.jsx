@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Stopwatch from './Stopwatch';
+import Weather from './Weather';
 import { useNavigate } from 'react-router-dom';
 import News from './News';
-import Weather from './Weather';
 
 const Widget = () => {
   const navigate = useNavigate();
@@ -88,7 +88,7 @@ const Widget = () => {
               <h1>{currentTime}</h1>
             </div>
             <div className="bg-[#101744]">
-              <Weather />
+              <Weather/>
             </div>
             <div className='h-[70%] bg-[#101744]'></div>
           </div>
