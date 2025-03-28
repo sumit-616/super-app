@@ -65,7 +65,7 @@ const Login = () => {
       </div>
 
       {/* Form Section */}
-      <div className="flex flex-col w-full lg:w-1/2 max-h-screen p-6 md:p-12 lg:px-[10vw] justify-start lg:overflow-auto mb-32">
+      <div className="flex flex-col w-full lg:w-1/2 max-h-screen p-6 md:p-12 lg:px-[10vw] justify-start lg:overflow-auto mb-16">
 
         <div className="text-center space-y-2">
           <h1 style={{ ...green, fontFamily: "Single Day" }} className="text-4xl md:text-5xl">
