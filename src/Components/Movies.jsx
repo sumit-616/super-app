@@ -66,19 +66,19 @@ const Movies = () => {
       const externalRes = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/external_ids?api_key=${API_KEY}`);
       const externalJson = await externalRes.json();
       const imdbId = externalJson.imdb_id;
-  
+
       // Fetch watch providers (OTT links) without limiting to a region
       const providerRes = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/watch/providers?api_key=${API_KEY}`);
       const providerJson = await providerRes.json();
-  
+
       // Try to get providers from multiple regions
-      let providers = providerJson.results?.US?.link || 
-                      providerJson.results?.GB?.link || 
-                      providerJson.results?.CA?.link || 
-                      providerJson.results?.KR?.link ||   // For Korean movies
-                      providerJson.results?.CN?.link ||   // For Chinese movies
-                      providerJson.results?.global?.link; // Global link
-  
+      let providers = providerJson.results?.US?.link ||
+        providerJson.results?.GB?.link ||
+        providerJson.results?.CA?.link ||
+        providerJson.results?.KR?.link ||   // For Korean movies
+        providerJson.results?.CN?.link ||   // For Chinese movies
+        providerJson.results?.global?.link; // Global link
+
       if (providers) {
         // Redirect to OTT platform (if available)
         window.open(providers, "_blank");
@@ -94,7 +94,7 @@ const Movies = () => {
       toast.error("Error fetching movie links");
     }
   };
-  
+
 
   return (
     <div className="flex flex-col md:gap-3 h-screen w-full bg-black text-white overflow-y-scroll pb-8">
