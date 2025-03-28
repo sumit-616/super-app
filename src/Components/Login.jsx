@@ -65,7 +65,7 @@ const Login = () => {
       </div>
 
       {/* Form Section */}
-      <div className="flex flex-col w-full lg:w-1/2 max-h-screen p-6 md:p-12 lg:px-[10vw] justify-start lg:overflow-auto">
+      <div className="flex flex-col w-full lg:w-1/2 max-h-screen p-6 md:p-12 lg:px-[10vw] justify-start lg:overflow-auto mb-32">
 
         <div className="text-center space-y-2">
           <h1 style={{ ...green, fontFamily: "Single Day" }} className="text-4xl md:text-5xl">
@@ -137,7 +137,7 @@ const Login = () => {
         </form>
 
         {/* Terms & Conditions */}
-        <div className="text-gray-400 text-sm text-center mt-3 text-start flex flex-col gap-3">
+        <div className="text-gray-400 text-sm mt-3 text-start flex flex-col gap-3">
           <p>
             By clicking on Sign up, you agree to Superapp's{" "}
             <span style={green}>Terms and Conditions of Use</span>
