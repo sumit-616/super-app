@@ -152,7 +152,7 @@ const Genre = () => {
 
       {/* Right Section */}
       <div className="flex flex-col md:w-[55%] h-[calc(100vh-80px)] w-full mt-8 md:mt-8 overflow-y-scroll overflow-x-hidden xl:overflow-hidden">
-        <div className="w-full grid pr-4 pl-4 grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6 h-auto">
+        <div className="w-full grid pr-4 pl-4 grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6 h-auto sm:mb-0 mb-16">
           {genreCard.map((genre) => (
             <button key={genre.id} className="cursor-pointer">
               <GenrePreview
