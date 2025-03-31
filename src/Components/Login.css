@@ -1,3 +1,14 @@
 span {
   cursor: pointer;
 }
+/* Fix for mobile viewport units */
+@supports (-webkit-touch-callout: none) {
+  .min-h-screen {
+    min-height: -webkit-fill-available;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  -webkit-overflow-scrolling: touch;
+}
