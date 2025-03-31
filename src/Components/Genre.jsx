@@ -46,7 +46,7 @@ const Genre = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row w-screen min-h-screen bg-black text-white p-4 md:p-6 overflow-hidden">
+    <div className="flex flex-col md:flex-row w-screen sm:min-h-screen h-auto bg-black text-white p-4 md:p-6 sm:overflow-hidden overflow-scroll gap-5">
       {/* Left Section */}
       <div className="flex flex-col md:w-[45%] w-full md:pl-8">
         <div className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-12 items-center md:items-start text-center md:text-left">
@@ -79,9 +79,9 @@ const Genre = () => {
       </div>
 
       {/* Right Section */}
-      <div className="flex flex-col md:w-[55%] w-full h-full">
+      <div className="flex flex-col md:w-[55%] w-full h-full rounded-2xl border-gray-800 sm:border-none pt-1 border-2">
         {/* Scrollable container */}
-        <div className="overflow-y-auto h-[calc(100vh-320px)] md:h-[calc(100vh-80px)]">
+        <div className="overflow-y-auto h-[calc(100vh-48vh)] md:h-[calc(100vh-100px)]">
           <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6 p-4">
             {genreCard.map((genre) => (
               <button key={genre.id} className="cursor-pointer">
@@ -97,8 +97,7 @@ const Genre = () => {
           </div>
         </div>
 
-        {/* Next Button (Fixed at bottom) */}
-        <div className="w-full bg-black py-4 flex justify-center md:justify-end md:pr-6 fixed bottom-0 left-0">
+        <div className="w-full bg-black py-4 flex justify-end sm:pr-6 sm:mb-8 pr-11">
           <button
             onClick={() => handleClickForNextPage("click")}
             className="bg-[#148A08] w-32 md:w-40 h-10 rounded-lg transition-all duration-100 hover:bg-[#0E6C06] hover:scale-105"
