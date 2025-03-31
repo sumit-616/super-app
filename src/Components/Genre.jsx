@@ -81,7 +81,7 @@ const Genre = () => {
       {/* Right Section */}
       <div className="flex flex-col md:w-[55%] w-full h-full">
         {/* Scrollable container */}
-        <div className="overflow-y-auto h-[calc(100vh-280px)] md:h-[calc(100vh-80px)]">
+        <div className="overflow-y-auto h-[calc(100vh-380px)] md:h-[calc(100vh-80px)]">
           <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6 p-4">
             {genreCard.map((genre) => (
               <button key={genre.id} className="cursor-pointer">
