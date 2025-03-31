@@ -46,7 +46,7 @@ const Genre = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row w-full min-h-screen bg-black text-white p-4 md:p-6">
+    <div className="flex flex-col md:flex-row w-screen min-h-screen bg-black text-white p-4 md:p-6 overflow-hidden">
       {/* Left Section */}
       <div className="flex flex-col md:w-[45%] w-full md:pl-8">
         <div className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-12 items-center md:items-start text-center md:text-left">
@@ -78,10 +78,10 @@ const Genre = () => {
         </div>
       </div>
 
-      {/* Right Section - Fixed scrolling issue */}
-      <div className="flex flex-col md:w-[55%] w-full mt-4 md:mt-0">
-        {/* Scrollable container with proper height */}
-        <div className="flex-1 overflow-y-auto pb-20">
+      {/* Right Section */}
+      <div className="flex flex-col md:w-[55%] w-full h-full">
+        {/* Scrollable container */}
+        <div className="overflow-y-auto h-[calc(100vh-280px)] md:h-[calc(100vh-80px)]">
           <div className="grid grid-cols-2 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6 p-4">
             {genreCard.map((genre) => (
               <button key={genre.id} className="cursor-pointer">
@@ -97,8 +97,8 @@ const Genre = () => {
           </div>
         </div>
 
-        {/* Next Button (Fixed at bottom but not overlapping) */}
-        <div className="w-full bg-black py-4 flex justify-end pr-6 sticky bottom-0 z-10">
+        {/* Next Button (Fixed at bottom) */}
+        <div className="w-full bg-black py-4 flex justify-center md:justify-end md:pr-6 fixed bottom-0 left-0">
           <button
             onClick={() => handleClickForNextPage("click")}
             className="bg-[#148A08] w-32 md:w-40 h-10 rounded-lg transition-all duration-100 hover:bg-[#0E6C06] hover:scale-105"
