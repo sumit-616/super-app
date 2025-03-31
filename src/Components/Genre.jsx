@@ -72,13 +72,14 @@ const Genre = () => {
 
   const [arrayOfMovieGenre, setArrayOfMovieGenre] = useState([]);
   const [nextPageCondition, setNextPageCondition] = useState(true);
-  
+
   const navigate = useNavigate();
 
   function handleClickForNextPage(source) {
     if (source === "click" && arrayOfMovieGenre.length > 2) {
-      navigate("/widget", {state: {
-          selectedGenres:arrayOfMovieGenre,
+      navigate("/widget", {
+        state: {
+          selectedGenres: arrayOfMovieGenre,
           userData,
         }
       });
@@ -106,10 +107,10 @@ const Genre = () => {
   }
 
   return (
-    <div className="flex flex-col md:flex-row w-screen min-h-screen bg-black text-white overflow-y-scroll p-4 md:p-6">
+    <div className="flex flex-col md:flex-row w-screen min-h-screen bg-black text-white p-4 md:p-6">
       {/* Left Section */}
       <div className="flex flex-col md:w-[45%] w-full md:pl-8">
-        <div className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-12">
+        <div className="flex flex-col gap-4 md:gap-8 pt-4 md:pt-12 items-center md:items-start text-center md:text-left">
           <h1
             style={{ ...green, fontFamily: "Single Day" }}
             className="text-3xl md:text-5xl"
@@ -120,6 +121,7 @@ const Genre = () => {
             Choose your <br /> entertainment <br /> category
           </h2>
         </div>
+
         <div className="flex flex-col gap-4 mt-6">
           <div className="flex flex-wrap gap-2">
             {arrayOfMovieGenre.map((movieGenre, index) => (
@@ -149,21 +151,21 @@ const Genre = () => {
       </div>
 
       {/* Right Section */}
-      <div className="flex flex-col md:w-[55%] w-full mt-8 md:mt-8">
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 h-auto">
-          {genreCard.map((genre)=>(
+      <div className="flex flex-col md:w-[55%] h-[calc(100vh-80px)] w-full mt-8 md:mt-8 overflow-y-scroll overflow-x-hidden xl:overflow-hidden">
+        <div className="w-full grid grid-cols-1 pr-4 pl-4 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6 h-auto">
+          {genreCard.map((genre) => (
             <button key={genre.id} className="cursor-pointer">
-            <GenrePreview
-              handleClickForGenre={handleClickForGenre}
-              bgColor={genre.bgColor}
-              movieGenre={genre.title}
-              imgPath={genre.image}
-              selectedGenres={arrayOfMovieGenre}
-            />
-          </button>
+              <GenrePreview
+                handleClickForGenre={handleClickForGenre}
+                bgColor={genre.bgColor}
+                movieGenre={genre.title}
+                imgPath={genre.image}
+                selectedGenres={arrayOfMovieGenre}
+              />
+            </button>
           ))}
         </div>
-        <div className="flex justify-end mt-8 md:mt-12 md:pr-4">
+        <div className="flex justify-end mt-4 md:mt-8 md:pr-4">
           <button
             onClick={() => handleClickForNextPage("click")}
             className="bg-[#148A08] w-32 md:w-40 h-10 rounded-lg cursor-pointer transition-all duration-100 hover:bg-[#0E6C06] hover:scale-105"
