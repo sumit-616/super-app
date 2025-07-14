@@ -26,11 +26,9 @@ const News = ({ handleClick }) => {
           setNews(JSON.parse(cachedNews));
           setRandomNews(JSON.parse(cachedRandomNews));
           setNewsDate(cachedDate);
-          console.log("Loaded from sessionStorage");
           return;
         }
 
-        console.log("Fetching from API...");
         const response = await fetch(url, options);
         const data = await response.json();
         const fetchedNews = data?.data?.news?.edges || [];
