@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Stopwatch from './Stopwatch';
 import Weather from './Weather.jsx';
 import { useNavigate } from 'react-router-dom';
 import News from './News';
+import Notes from "./Notes.jsx"
 
 const Widget = () => {
   const navigate = useNavigate();
@@ -73,10 +74,7 @@ const Widget = () => {
             </div>
           </div>
           {/* notes second one */}
-          <div className="flex flex-col gap-2 bg-[#F1C75B] row-span-3 p-4 rounded-2xl">
-            <h1 style={{ font: "Roboto" }} className='text-black text-3xl font-bold'>All notes</h1>
-            <textarea className='w-full h-full p-2 border-2 rounded-lg' name="notes" id="notes" placeholder='This is how I am going to learn MERN Stack in next 3 months.'></textarea>
-          </div>
+          <Notes/>
           {/* news section */}
           <div className="bg-white row-span-5 overflow-hidden">
             <News handleClick={handleClick}/>
