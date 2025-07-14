@@ -1,67 +1,46 @@
-import React, { useEffect, useState } from "react";
-import parse from "html-react-parser";
+/* eslint-disable no-unused-vars */
+import { useEffect, useState } from "react";
 
-const url = 'https://imdb237.p.rapidapi.com/news?category=MOVIE';
+const url = 'https://imdb-com.p.rapidapi.com/news/get-by-category?category=TOP';
 const options = {
-	method: 'GET',
-	headers: {
-		'x-rapidapi-key': '82a9bf644fmshac7cee18755d358p1926a4jsnedf31f1e0e3d',
-		'x-rapidapi-host': 'imdb237.p.rapidapi.com'
-	}
+  method: 'GET',
+  headers: {
+    'x-rapidapi-key': 'd4a639ab78msh9d966cffff2d94cp133f3fjsn5b0deaab3330',
+    'x-rapidapi-host': 'imdb-com.p.rapidapi.com'
+  }
 };
 
-const News = (props) => {
+const News = ({ handleClick }) => {
   const [news, setNews] = useState([]);
   const [randomNews, setRandomNews] = useState(null);
   const [newsDate, setNewsDate] = useState("");
 
-  const handleContent = (html) =>
-    parse(html, {
-      replace: (domNode) => {
-        if (domNode.name === "a" && domNode.attribs.href) {
-          // Convert relative URLs to absolute URLs
-          const imdbBaseURL = "https://www.imdb.com";
-          const href = domNode.attribs.href.startsWith("/")
-            ? imdbBaseURL + domNode.attribs.href
-            : domNode.attribs.href;
-  
-          return (
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
-            >
-              {domNode.children[0].data}
-            </a>
-          );
-        }
-      },
-    });
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // const cachedNews = sessionStorage.getItem("newsData");
-        // const cachedRandomNews = sessionStorage.getItem("randomNews");
+        const cachedNews = sessionStorage.getItem("newsData");
+        const cachedRandomNews = sessionStorage.getItem("randomNews");
+        const cachedDate = sessionStorage.getItem("newsDate");
 
-        // if (cachedNews && cachedRandomNews) {
-        //   setNews(JSON.parse(cachedNews));
-        //   setRandomNews(JSON.parse(cachedRandomNews));
-        //   console.log("hi");
-        // } else {
-        // console.log("bye")
+        if (cachedNews && cachedRandomNews && cachedDate) {
+          setNews(JSON.parse(cachedNews));
+          setRandomNews(JSON.parse(cachedRandomNews));
+          setNewsDate(cachedDate);
+          return;
+        }
+
         const response = await fetch(url, options);
         const data = await response.json();
-        const fetchedNews = data?.data?.news || [];
-        console.log(data);
+        const fetchedNews = data?.data?.news?.edges || [];
 
         if (fetchedNews.length > 0) {
-          // sessionStorage.setItem("newsData", JSON.stringify(fetchedNews));
+          sessionStorage.setItem("newsData", JSON.stringify(fetchedNews));
+
           const randomItem =
             fetchedNews[Math.floor(Math.random() * fetchedNews.length)];
           setRandomNews(randomItem);
-          // sessionStorage.setItem("randomNews", JSON.stringify(randomItem));
+          sessionStorage.setItem("randomNews", JSON.stringify(randomItem));
+
           const dateStr = randomItem?.node?.date;
           if (dateStr) {
             const formattedDate = dateStr
@@ -70,15 +49,16 @@ const News = (props) => {
               .split("Z")
               .join(" ");
             setNewsDate(formattedDate);
+            sessionStorage.setItem("newsDate", formattedDate);
           }
         }
 
         setNews(fetchedNews);
-        // }
       } catch (error) {
         console.error("Error fetching news:", error);
       }
     };
+
     fetchData();
   }, []);
 
@@ -101,7 +81,7 @@ const News = (props) => {
               </div>
             </div>
             <div className="flex flex-col custom-html overflow-y-auto h-[50%] py-4 px-6 bg-white inline-block">
-              {(handleContent(randomNews?.node?.text?.plaidHtml) || "Loading content...")}
+              {randomNews?.node?.text?.plainText || "Loading content..."}
             </div>
           </div>
         ) : (
@@ -110,7 +90,7 @@ const News = (props) => {
       </div>
       <div className="flex justify-end mx-2">
         <button
-          onClick={props.handleClick}
+          onClick={() => handleClick()}
           className="bg-[#148A08] w-32 h-8 rounded-2xl text-white font-semibold tracking-wide cursor-pointer"
         >
           Browse
@@ -121,3 +101,9 @@ const News = (props) => {
 };
 
 export default News;
+
+import PropTypes from 'prop-types';
+
+News.propTypes = {
+  handleClick: PropTypes.func.isRequired,
+};
