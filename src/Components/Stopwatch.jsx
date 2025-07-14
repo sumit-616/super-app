@@ -5,42 +5,69 @@ const Stopwatch = () => {
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
-  const [startTime, setStartTime] = useState(0);
   const [remainingTime, setRemainingTime] = useState(0);
 
   const totalTime = (parseInt(hours || 0) * 3600) + (parseInt(minutes || 0) * 60) + parseInt(seconds || 0);
 
   useEffect(() => {
+    const savedIsRunning = JSON.parse(localStorage.getItem("stopwatch_isRunning"));
+    const savedStartTime = parseInt(localStorage.getItem("stopwatch_startTime"), 10);
+    const savedTotalTime = parseInt(localStorage.getItem("stopwatch_totalTime"), 10);
+
+    if (savedIsRunning && savedStartTime && savedTotalTime) {
+      const elapsed = Math.floor((Date.now() - savedStartTime) / 1000);
+      const newRemaining = savedTotalTime - elapsed;
+      if (newRemaining > 0) {
+        setRemainingTime(newRemaining);
+        setIsRunning(true);
+      } else {
+        setRemainingTime(0);
+        setIsRunning(false);
+      }
+    }
+  }, []);
+
+
+  useEffect(() => {
     let timer;
     if (isRunning && remainingTime > 0) {
       timer = setInterval(() => {
-        const currentTime = Date.now();
-        const elapsedTime = Math.floor((currentTime - startTime) / 1000);
-        const newRemainingTime = totalTime - elapsedTime;
+        const savedStartTime = parseInt(localStorage.getItem("stopwatch_startTime"), 10);
+        const savedTotalTime = parseInt(localStorage.getItem("stopwatch_totalTime"), 10);
+        const elapsedTime = Math.floor((Date.now() - savedStartTime) / 1000);
+        const newRemainingTime = savedTotalTime - elapsedTime;
 
         if (newRemainingTime <= 0) {
           setRemainingTime(0);
           setIsRunning(false);
+          localStorage.removeItem("stopwatch_isRunning");
         } else {
           setRemainingTime(newRemainingTime);
         }
       }, 1000);
-    } else if (!isRunning) {
+    } else {
       clearInterval(timer);
     }
 
     return () => clearInterval(timer);
-  }, [isRunning, startTime, totalTime, remainingTime]);
+  }, [isRunning, remainingTime]);
+
 
   const handleToggle = () => {
     if (!isRunning && totalTime > 0) {
-      setStartTime(Date.now());
+      const startTime = Date.now();
       setRemainingTime(totalTime);
       setIsRunning(true);
+
+      localStorage.setItem("stopwatch_isRunning", true);
+      localStorage.setItem("stopwatch_startTime", startTime.toString());
+      localStorage.setItem("stopwatch_totalTime", totalTime.toString());
     } else {
       setIsRunning(false);
+      localStorage.removeItem("stopwatch_isRunning");
     }
   };
+
 
   const handleInputChange = (setter, max) => (e) => {
     const value = e.target.value === '' ? '' : parseInt(e.target.value) || 0;
@@ -113,15 +140,22 @@ const Stopwatch = () => {
     setHours((prev) => (prev - 1 < 0 ? 0 : prev - 1));
   };
 
-  const progress = (remainingTime / totalTime) * 100;
+  const runningTotalTime = isRunning
+    ? parseInt(localStorage.getItem("stopwatch_totalTime"), 10)
+    : totalTime;
+
+  const progress = runningTotalTime > 0
+    ? (remainingTime / runningTotalTime) * 100
+    : 0;
+
 
   const getProgressColor = (progress) => {
     if (progress >= 66) {
-      return '#4ade80'; // Green
+      return '#4ade80'; 
     } else if (progress >= 33) {
-      return '#facc15'; // Yellow
+      return '#facc15'; 
     } else {
-      return '#ef4444'; // Red
+      return '#ef4444'; 
     }
   };
 
@@ -176,7 +210,7 @@ const Stopwatch = () => {
           </div>
           <div className='pt-17 text-3xl'>:</div>
           <div className="flex flex-col items-center">
-          <span className="text-[#949494] pb-3">Minutes</span>
+            <span className="text-[#949494] pb-3">Minutes</span>
             <button onClick={incrementMinutes} className="text-xl text-[#949494]">▲</button>
             <input
               type="number"
