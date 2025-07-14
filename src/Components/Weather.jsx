@@ -1,10 +1,7 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import pressure_icon from "/card_img/pressure_icon.png";
 import humid_icon from "/card_img/Humid_icon2.png";
 import wind_icon from "/card_img/wind_icon.png";
-import Line from "/card_img/Line.png";
-import { div } from "framer-motion/client";
 
 const Weather = () => {
   const [weather, setWeather] = useState(null);
@@ -48,7 +45,7 @@ const Weather = () => {
     <div>
       {weather ? (
         <div className="grid grid-cols-8 gap-1">
-          <div className="flex flex-col col-span-2 items-center">
+          <div className="flex flex-col col-span-2 items-center justify-start text-center text-sm text-base leading-tight">
             <img
               className="w-14 h-12"
               src={weather.condition.icon}
